@@ -51,6 +51,7 @@ h3 {
 
 a {
 	font-size: 1.0em;
+	color: #fff;
 }
 
 pre {
@@ -58,15 +59,18 @@ pre {
 	margin: 0em;
 }
 
+.gigs-container {
+	display: grid;
+}
+
 .gig {
 	font-weight: bold;
-	color: #fff;
 	text-transform: uppercase;
-	display: block;
+	margin: 0 auto;
+	display: flex;
 }
 
 .streaming, .press, .merch {
 	font-weight: bold;
-	color: #fff;
 	text-transform: uppercase;
 }
