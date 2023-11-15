@@ -1,8 +1,14 @@
+body,html {
+    margin: 0;
+    padding: 0;
+}
+
 body {
 	font-family: monospace;
 	text-align: center;
 	background: #000;
 	color: #fff;
+	font-size: 1.6vh;
 }
 
 video {
@@ -24,8 +30,11 @@ video {
 
 #container {
 	display: flex;
-	align-items: center;
 	justify-content: center;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+    flex-direction: column;
 }
 
 #content {
@@ -44,7 +53,7 @@ h1 {
 	font-style: italic;
 	font-stretch: expanded;
 	margin-top: 0em;
-	margin-bottom: 0.2em;
+	margin-bottom: .5em;
 }
 
 h2 {
@@ -71,7 +80,7 @@ pre {
 }
 
 section {
-	margin-bottom:2em;
+	margin-bottom:2.2em;
 }
 
 .gigs-container {
