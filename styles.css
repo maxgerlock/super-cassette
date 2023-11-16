@@ -48,6 +48,11 @@ video {
 	font-style: italic;
 }
 
+#super-cassette-header {
+	font-size: .75em;
+	margin: 0em;
+}
+
 h1 {
 	font-size: 4em;
 	font-style: italic;
@@ -74,10 +79,6 @@ a {
 	text-transform: lowercase;
 }
 
-pre {
-	font-size: 1em;
-	margin: 0em;
-}
 
 section {
 	margin-bottom:2.2em;
