@@ -28,6 +28,14 @@ video {
 	z-index: 0;
 }
 
+#continue-preorder {
+	display: inline-block;
+	margin-top: 0;
+	margin-bottom: 1.5em;
+	font-size: 1.0em;
+	text-transform: uppercase;
+}
+
 #container {
 	display: flex;
 	justify-content: center;
@@ -83,6 +91,8 @@ a {
 section {
 	margin-bottom:2.2em;
 }
+
+
 
 .gigs-container {
 	display: grid;
