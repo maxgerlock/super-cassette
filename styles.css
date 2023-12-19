@@ -28,10 +28,10 @@ video {
 	z-index: 0;
 }
 
-#continue-preorder {
+#continue-topline {
 	display: inline-block;
 	margin-top: 0;
-	margin-bottom: 1.5em;
+	margin-bottom: 3em;
 	font-size: 1.0em;
 	text-transform: uppercase;
 }
