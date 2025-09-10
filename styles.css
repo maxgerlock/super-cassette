@@ -63,10 +63,9 @@ video {
 
 h1 {
 	font-size: 4em;
-	font-style: italic;
-	font-stretch: expanded;
 	margin-top: 0em;
 	margin-bottom: .5em;
+	font-family: monospace;
 }
 
 h2 {
@@ -87,6 +86,11 @@ a {
 	text-transform: lowercase;
 }
 
+p {
+	margin: 2em 5em;
+	font-family: monospace;
+}
+
 
 section {
 	margin-bottom:2.2em;
@@ -99,7 +103,7 @@ section {
 }
 
 .gig {
-	margin: .15em auto;
+	margin: .2em auto;
 	display: flex;
 }
 
