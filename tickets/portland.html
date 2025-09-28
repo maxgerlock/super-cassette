@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Super Cassette — Portland Tickets</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <style>
+    /* Simple, fast-loading holding screen while we fire the pixel */
+    html, body { height: 100%; margin: 0; font-family: system-ui, sans-serif; }
+    .wrap { display: grid; place-items: center; height: 100%; text-align: center; padding: 2rem; }
+    .card { max-width: 520px; border: 1px solid #ddd; padding: 1.5rem; border-radius: 12px; }
+    .small { opacity: .7; font-size: .9rem; margin-top: .5rem; }
+  </style>
+
+  <!-- Meta Pixel Base Code -->
+  <script>
+    !(function(f,b,e,v,n,t,s){
+      if(f.fbq) return; n=f.fbq=function(){ n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments) };
+      if(!f._fbq) f._fbq=n; n.push=n; n.loaded=!0; n.version='2.0';
+      n.queue=[]; t=b.createElement(e); t.async=!0;
+      t.src=v; s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);
+    })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '1828543974753448', {
+      // Optional: Advanced Matching fields if you have them
+      // em: 'hashedoremail@example.com'
+    });
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
+  </noscript>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Hold tight — sending you to tickets…</h1>
+      <p>We're reserving your spot to see Super Cassette in <strong>Portland</strong>!</p>
+      <p class="small">If you're not redirected automatically, <a id="manual-link" href="#">click here</a>.</p>
+    </div>
+  </div>
+
+  <script>
+    // -------------- EDIT THESE PER SHOW --------------
+    const SHOW_ID        = 'PORTLAND_2025_11_07_TWILIGHT_CAFE';
+    const SHOW_NAME      = 'Portland — Nov 7, 2025 — Twilight Cafe';
+    const SHOW_CITY      = 'Portland';
+    const SHOW_DATE      = '2025-11-07';
+    const SHOW_VENUE     = 'Twilight Cafe';
+
+    // Destination (external ticketing vendor) — add UTMs for clarity
+    const DESTINATION_URL =
+      'https://tickets.holdmyticket.com/tickets/452361?utm_source=meta&utm_medium=cpc&utm_campaign=tour_2025&utm_content=portland_twilight';
+    // -------------------------------------------------
+
+    // Optional: pass through any UTM params from the ad to the vendor (keeps reporting intact)
+    function appendIncomingUtms(url) {
+      try {
+        const incoming = new URL(window.location.href);
+        const dest = new URL(url);
+        // Copy common UTM params if present
+        ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(k=>{
+          const v = incoming.searchParams.get(k);
+          if (v) dest.searchParams.set(k, v);
+        });
+        return dest.toString();
+      } catch (_) {
+        return url;
+      }
+    }
+
+    const finalUrl = appendIncomingUtms(DESTINATION_URL);
+    document.getElementById('manual-link').setAttribute('href', finalUrl);
+
+    // Fire a high-signal client event before redirect (pick one: ViewContent or InitiateCheckout)
+    // Include parameters to segment by show inside Meta.
+    fbq('track', 'ViewContent', {
+      content_category: 'tour_ticket',
+      content_type: 'event',
+      content_ids: [SHOW_ID],         // good for building Custom Conversions
+      content_name: SHOW_NAME,        // human-readable
+      city: SHOW_CITY,
+      venue: SHOW_VENUE,
+      start_date: SHOW_DATE,
+      value: 0.00,                    // leave 0 if you don't know; won't affect optimization
+      currency: 'USD'
+    });
+
+    // Small delay to ensure the pixel request is sent before navigation.
+    // 600–800ms is a practical sweet spot; adjust if needed.
+    setTimeout(() => {
+      window.location.replace(finalUrl);
+    }, 700);
+  </script>
+</body>
+</html>

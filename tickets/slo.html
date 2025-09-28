@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Super Cassette — SLO Tickets</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <style>
+    /* Simple, fast-loading holding screen while we fire the pixel */
+    html, body { height: 100%; margin: 0; font-family: system-ui, sans-serif; }
+    .wrap { display: grid; place-items: center; height: 100%; text-align: center; padding: 2rem; }
+    .card { max-width: 520px; border: 1px solid #ddd; padding: 1.5rem; border-radius: 12px; }
+    .small { opacity: .7; font-size: .9rem; margin-top: .5rem; }
+    .todo { background: #fff3cd; border: 1px solid #ffeaa7; padding: 1rem; border-radius: 8px; margin: 1rem 0; }
+    .todo h3 { margin: 0 0 0.5rem 0; color: #856404; }
+  </style>
+
+  <!-- Meta Pixel Base Code -->
+  <script>
+    !(function(f,b,e,v,n,t,s){
+      if(f.fbq) return; n=f.fbq=function(){ n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments) };
+      if(!f._fbq) f._fbq=n; n.push=n; n.loaded=!0; n.version='2.0';
+      n.queue=[]; t=b.createElement(e); t.async=!0;
+      t.src=v; s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);
+    })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '1828543974753448', {
+      // Optional: Advanced Matching fields if you have them
+      // em: 'hashedoremail@example.com'
+    });
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none"
+      src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/>
+  </noscript>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Super Cassette — San Luis Obispo</h1>
+      <p>We're excited to see you in <strong>SLO</strong>!</p>
+      
+      <div class="todo">
+        <h3>📝 TODO</h3>
+        <p><strong>Venue TBD:</strong> Confirm venue and add ticketing URL for SLO show</p>
+        <p><em>Once venue and ticketing are confirmed, update the venue details and DESTINATION_URL variable, then remove this TODO section.</em></p>
+      </div>
+      
+      <p class="small">Venue and ticket information coming soon!</p>
+    </div>
+  </div>
+
+  <script>
+    // -------------- EDIT THESE PER SHOW --------------
+    const SHOW_ID        = 'SLO_2025_11_12_TBD';
+    const SHOW_NAME      = 'SLO — Nov 12, 2025 — TBD';
+    const SHOW_CITY      = 'San Luis Obispo';
+    const SHOW_DATE      = '2025-11-12';
+    const SHOW_VENUE     = 'TBD';
+
+    // TODO: Add actual venue and ticketing URL when confirmed
+    const DESTINATION_URL = '#';
+    // -------------------------------------------------
+
+    // Optional: pass through any UTM params from the ad to the vendor (keeps reporting intact)
+    function appendIncomingUtms(url) {
+      try {
+        const incoming = new URL(window.location.href);
+        const dest = new URL(url);
+        // Copy common UTM params if present
+        ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(k=>{
+          const v = incoming.searchParams.get(k);
+          if (v) dest.searchParams.set(k, v);
+        });
+        return dest.toString();
+      } catch (_) {
+        return url;
+      }
+    }
+
+    const finalUrl = appendIncomingUtms(DESTINATION_URL);
+    document.getElementById('manual-link')?.setAttribute('href', finalUrl);
+
+    // Fire a high-signal client event before redirect (pick one: ViewContent or InitiateCheckout)
+    // Include parameters to segment by show inside Meta.
+    fbq('track', 'ViewContent', {
+      content_category: 'tour_ticket',
+      content_type: 'event',
+      content_ids: [SHOW_ID],         // good for building Custom Conversions
+      content_name: SHOW_NAME,        // human-readable
+      city: SHOW_CITY,
+      venue: SHOW_VENUE,
+      start_date: SHOW_DATE,
+      value: 0.00,                    // leave 0 if you don't know; won't affect optimization
+      currency: 'USD'
+    });
+
+    // TODO: Uncomment redirect when venue and ticketing URL are confirmed
+    // setTimeout(() => {
+    //   window.location.replace(finalUrl);
+    // }, 700);
+  </script>
+</body>
+</html>
