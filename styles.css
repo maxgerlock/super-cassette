@@ -53,77 +53,13 @@ video {
 	font-style: italic;
 }
 
-/*
- * Ticker: two identical long rows (no space between them in HTML). Each row is many
- * “Super Cassette · …” so several fit in the viewport; translateX(-50%) loops seamlessly.
- * (Differs from https://codepen.io/jamesbarnett/pen/kQebQO fixed 200%/50% split, which is only one viewport per half.)
- */
-#super-cassette-header.brand-marquee {
-	position: relative;
-	overflow: hidden;
-	box-sizing: border-box;
-	width: 100%;
-	max-width: 100%;
-	margin: 0 0 2em 0;
-	font-size: clamp(1.1rem, 3.75vw, 2.5rem);
+#super-cassette-header {
+	font-size: clamp(2rem, 8vw, 4.5rem);
 	font-weight: bold;
 	text-transform: uppercase;
-	letter-spacing: 0.5em;
-	line-height: 1.15;
-	height: 1.35em;
-}
-
-.brand-marquee__track {
-	display: flex;
-	flex-wrap: nowrap;
-	width: max-content;
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
-	animation: brand-marquee-scroll 140s linear infinite;
-}
-
-.brand-marquee__row {
-	flex: 0 0 auto;
-	box-sizing: border-box;
-	white-space: nowrap;
-	padding-inline-end: 2.5em;
-}
-
-@keyframes brand-marquee-scroll {
-	from {
-		transform: translate3d(0, 0, 0);
-	}
-	to {
-		transform: translate3d(-50%, 0, 0);
-	}
-}
-
-@media (prefers-reduced-motion: reduce) {
-	#super-cassette-header.brand-marquee {
-		height: auto;
-		min-height: 1.2em;
-		letter-spacing: 0.2em;
-	}
-
-	.brand-marquee__track {
-		position: relative;
-		left: 0;
-		width: 100%;
-		height: auto;
-		animation: none;
-		transform: none;
-		justify-content: center;
-	}
-
-	.brand-marquee__row {
-		padding-inline-end: 0;
-	}
-
-	.brand-marquee__row + .brand-marquee__row {
-		display: none;
-	}
+	letter-spacing: 0.12em;
+	margin: 0 0 0.5em 0;
+	line-height: 1.1;
 }
 
 #super-cassette {
