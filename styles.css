@@ -54,8 +54,9 @@ video {
 }
 
 #super-cassette-header {
-	margin: 10em auto;
-	font-size: .5em;
+	/* margin: 2em auto; */
+	font-size: .7em;
+	/* background-color: #000; */
 }
 
 #super-cassette {
